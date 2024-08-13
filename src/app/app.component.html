@@ -1,0 +1,44 @@
+
+<clr-main-container>
+  <app-header></app-header>
+  <div class="content-container">
+    <clr-vertical-nav [clrVerticalNavCollapsible]="true" *ngIf="authenticated()">
+      <clr-vertical-nav-group routerLinkActive="active">
+        <cds-icon shape="cloud-traffic" clrVerticalNavIcon></cds-icon>
+        Status
+        <clr-vertical-nav-group-children>
+          <a clrVerticalNavLink routerLink="./status_system" routerLinkActive="active">System</a>
+          <a clrVerticalNavLink routerLink="./status_dest" routerLinkActive="active">Destination</a>
+          <a clrVerticalNavLink routerLink="./status_opcua" routerLinkActive="active">OPC UA</a>
+          <a clrVerticalNavLink routerLink="./status_modbus" routerLinkActive="active">Modbus</a>
+          <a clrVerticalNavLink routerLink="./status_mtconnect" routerLinkActive="active">MT-Connect</a>
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+      <clr-vertical-nav-group routerLinkActive="active">
+        <cds-icon shape="cog" clrVerticalNavIcon></cds-icon>
+        Settings
+        <clr-vertical-nav-group-children>
+          <a clrVerticalNavLink routerLink="./settings_system" routerLinkActive="active">System</a>
+          <a clrVerticalNavLink routerLink="./settings_dest" routerLinkActive="active">Destination</a>
+          <a clrVerticalNavLink routerLink="./settings_opcua" routerLinkActive="active">OPC UA</a>
+          <a clrVerticalNavLink routerLink="./settings_modbus" routerLinkActive="active">Modbus</a>
+          <a clrVerticalNavLink routerLink="./settings_mtconnect" routerLinkActive="active">MT-Connect</a>
+          
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+      <clr-vertical-nav-group routerLinkActive="active">
+        <cds-icon shape="shield-check" clrVerticalNavIcon></cds-icon>
+        Security
+        <clr-vertical-nav-group-children>
+          <a clrVerticalNavLink routerLink="./security_password" routerLinkActive="active">Password</a>
+          <a clrVerticalNavLink routerLink="./security_certificates" routerLinkActive="active">Certificats</a>
+        </clr-vertical-nav-group-children>
+      </clr-vertical-nav-group>
+   
+    </clr-vertical-nav>
+
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</clr-main-container>

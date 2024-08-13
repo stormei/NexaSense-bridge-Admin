@@ -1,0 +1,33 @@
+
+<clr-tabs>
+    <clr-tab>
+      <button clrTabLink>Status</button>
+      <clr-tab-content *clrIfActive>
+      
+          <table>
+            <tr>
+              <td>Enabled</td>
+              <td>{{connectorEnabled}}</td>
+          </tr>
+            <tr>
+                <td>URL</td>
+                <td>{{opcUaUrl}}</td>
+            </tr>
+            <tr>
+                <td>Registered tags</td>
+                <td> {{activeTags()}}</td>
+            </tr>
+
+          </table>
+      
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink>Tags</button>
+      <clr-tab-content *clrIfActive>
+        <app-TagTable [tags]="tagsArray"></app-TagTable>
+      </clr-tab-content>
+    </clr-tab>
+    
+  </clr-tabs>
+  

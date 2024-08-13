@@ -1,0 +1,23 @@
+<div id="tagtable-container">
+  <table id="tagtable" class="table table-striped">
+    <thead>
+      <tr>
+        <th>TagName</th>
+        <th>Value</th>
+        <th>DataType</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tag of tags">
+        <td>{{ getTagName(tag) }}</td>
+        <td>{{ getTagValue(tag) }}</td>
+        <td>{{ getTagDataType(tag) }}</td>
+        <td>{{ getStatusCodeDescription(getTagStatus(tag)) }}</td>
+        <td><i [class]="getStatusCodeIconClass(getTagStatus(tag))"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

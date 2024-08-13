@@ -1,0 +1,33 @@
+<clr-header *ngIf="authenticated()">
+  <div class="branding">
+    <a href="javascript://" class="nav-link">
+      <i class="fa-solid fa-share-nodes fa-2xl"></i>
+      <span class="title">NexaSense</span>
+    </a>
+  </div>
+  <div class="header-nav">
+    <a href="javascript://" class="nav-link nav-text">Home</a>
+    <a href="javascript://" class="nav-link nav-text">About</a>
+    <a href="javascript://" class="nav-link nav-text">Services</a>
+  </div>
+  <div class="header-actions">
+ 
+    <a href="javascript:void(0);" class="nav-link" (click)="toggleTheme()">
+      <i [ngClass]="'fa-solid fa-xl ' + iconClass"></i>
+    </a>
+   <a href="javascript://"  class="nav-link" (click)="modalOpen = true">
+      <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
+    </a> 
+  </div>  
+</clr-header>
+
+<clr-modal [(clrModalOpen)]="modalOpen">
+  <h3 class="modal-title">Logout</h3>
+  <div class="modal-body">
+    <p>Are you sure ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="modalOpen = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="logout()">Ok</button>
+  </div>
+</clr-modal>

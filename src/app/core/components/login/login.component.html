@@ -1,0 +1,51 @@
+
+<div class="login-wrapper">
+  <form class="login">
+    <div class="login-header">
+  
+ 
+    </div>
+    <div class="login-body">
+      <section class="title">
+        <div class="welcome">Welcome to</div>
+        NexaSense
+        <div class="hint">Bridge</div>
+      </section>
+      <div class="login-group">
+     
+        <clr-input-container>
+          <label class="clr-sr-only">username</label>
+          <input
+            type="text"
+            autocomplete="username"
+            name="username"
+            clrInput
+            placeholder="Enter username"
+            [(ngModel)]="username"
+          />
+        </clr-input-container>
+        <clr-password-container>
+          <label class="clr-sr-only">Password</label>
+          <input
+            type="password"
+            autocomplete="current-password"
+            name="password"
+            clrPassword
+            placeholder="Enter password"
+            [(ngModel)]="password"
+          />
+        </clr-password-container>
+
+        <div class="error active" *ngIf="failedLogin()">{{erroMessage}}</div>
+        <button type="submit" class="btn btn-primary" (click)="authenticate(username,password)">Log in</button>
+    
+      </div>
+    </div>
+    <div class="login-footer">
+      <span class="copyright">2024 NexaSense,</span>
+      <a href="javascript://">Terms</a>
+      <a href="javascript://">Privacy</a>
+    </div>
+  </form>
+</div>
+
