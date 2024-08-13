@@ -7,6 +7,7 @@ import { StatusDestinationComponent} from './core/components/statusDestination/s
 import { StatusSystemComponent } from './core/components/statusSystem/statusSystem.component';
 import { StatusOpcuaComponent } from './core/components/statusOpcua/statusOpcua.component';
 import { StatusMtconnectComponent } from './core/components/statusMtconnect/statusMtconnect.component';
+import { SettingsDestinationComponent } from './core/components/settingsDestination/settingsDestination.component';
 const routes: Routes = [
   {
     path: '',
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'status_mtconnect',
     component: StatusMtconnectComponent
+  },
+  {
+    path: 'settings_dest',
+    component: SettingsDestinationComponent
   },
   {
     path: '**',
