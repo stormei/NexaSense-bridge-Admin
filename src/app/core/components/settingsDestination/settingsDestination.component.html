@@ -2,28 +2,28 @@
 <form clrForm>
   <clr-input-container>
     <label>MQTT Broker URL</label>
-    <input clrInput type="text" [(ngModel)]="model" name="Broker URL" />
+    <input clrInput type="text" [(ngModel)]="mqttUrl" name="Broker URL" />
   </clr-input-container>
   <clr-input-container>
     <label>MQTT Topic</label>
-    <input clrInput type="text" [(ngModel)]="model" name="MQTT topic" />
+    <input clrInput type="text" [(ngModel)]="topic" name="MQTT topic" />
   </clr-input-container>
 
   <clr-input-container>
     <label>MQTT Client ID</label>
-    <input clrInput type="text" [(ngModel)]="model" name="MQTT Client ID" />
+    <input clrInput type="text" [(ngModel)]="clientId" name="MQTT Client ID" />
   </clr-input-container>
   <clr-input-container>
     <label>MQTT username</label>
-    <input clrInput type="text" [(ngModel)]="model" name="MQTT username" />
+    <input clrInput type="text" [(ngModel)]="username" name="MQTT username" />
   </clr-input-container>
   <clr-input-container>
     <label>MQTT Client password</label>
-    <input clrInput type="password" [(ngModel)]="model" name="MQTT Client password" />
+    <input clrInput type="password" [(ngModel)]="password" name="MQTT Client password" />
   </clr-input-container>
   <clr-toggle-container>
     <clr-toggle-wrapper>
-      <input type="checkbox" clrToggle value="option1" name="options" />
+      <input type="checkbox" clrToggle value="option1" name="options" [(ngModel)]="useTbPayload" />
       <label>Use Thingsboard payload format</label>
     </clr-toggle-wrapper>
   </clr-toggle-container>
