@@ -13,6 +13,7 @@ import { StatusDestinationComponent} from './core/components/statusDestination/s
 import { StatusSystemComponent } from './core/components/statusSystem/statusSystem.component';
 import { StatusOpcuaComponent } from './core/components/statusOpcua/statusOpcua.component';
 import { StatusMtconnectComponent } from './core/components/statusMtconnect/statusMtconnect.component';
+import { SettingsDestinationComponent } from './core/components/settingsDestination/settingsDestination.component';
 import { TagTableComponent } from './shared/components/TagTable/TagTable.component';
 import { GraphComponent } from './shared/components/graph/graph.component';
 import '@cds/core/icon/register.js';
@@ -30,7 +31,8 @@ ClarityIcons.addIcons(shieldCheckIcon,userIcon,cloudTrafficIcon,tagIcon,collapse
     HeaderComponent,
     MenuComponent,
     TagTableComponent,
-    GraphComponent
+    GraphComponent,
+    SettingsDestinationComponent
   ],
   imports: [
     BrowserModule,

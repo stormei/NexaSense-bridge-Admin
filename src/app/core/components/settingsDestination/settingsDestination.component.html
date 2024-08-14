@@ -1,3 +1,32 @@
-<p>
-  settingsDestination works!
-</p>
+<h4 class="card-title"><strong>Destination MQTT Broker settings</strong> </h4>
+<form clrForm>
+  <clr-input-container>
+    <label>MQTT Broker URL</label>
+    <input clrInput type="text" [(ngModel)]="model" name="Broker URL" />
+  </clr-input-container>
+  <clr-input-container>
+    <label>MQTT Topic</label>
+    <input clrInput type="text" [(ngModel)]="model" name="MQTT topic" />
+  </clr-input-container>
+
+  <clr-input-container>
+    <label>MQTT Client ID</label>
+    <input clrInput type="text" [(ngModel)]="model" name="MQTT Client ID" />
+  </clr-input-container>
+  <clr-input-container>
+    <label>MQTT username</label>
+    <input clrInput type="text" [(ngModel)]="model" name="MQTT username" />
+  </clr-input-container>
+  <clr-input-container>
+    <label>MQTT Client password</label>
+    <input clrInput type="password" [(ngModel)]="model" name="MQTT Client password" />
+  </clr-input-container>
+  <clr-toggle-container>
+    <clr-toggle-wrapper>
+      <input type="checkbox" clrToggle value="option1" name="options" />
+      <label>Use Thingsboard payload format</label>
+    </clr-toggle-wrapper>
+  </clr-toggle-container>
+  <button class="btn btn-primary" type="submit" (click)="submit()">Submit</button>
+</form>
+
