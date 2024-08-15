@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./settingsDestination.component.css']
 })
 export class SettingsDestinationComponent implements OnInit {
-  model:string = '';
+
   mqttUrl:string = '';
   topic:string = '';
   clientId:string = '';
   username:string = '';
   password:string = '';
-  useTbPayload:boolean = false;
+  useTbPayload:boolean = true;
   constructor(private  app: ApplicationService,private router: Router) {
 
   }
@@ -25,16 +25,22 @@ export class SettingsDestinationComponent implements OnInit {
     this.getData();
   }
 
-  submit() {
+  async submit() {
+    try {
+      const res = await this.app.updateMqttConfig(this.mqttUrl ,this.topic,this.clientId,this.username,this.password,true);
+    }
+    catch(e){
+      console.log(e);
+    }
   }
 
   async getData() {
     const data = await this.app.getStatus();
     this.mqttUrl = data.mqttBrokerUrl;
-    this.topic = data.mqttPublishPaused;
-    this.clientId = data.mqttState;
-    this.username = data.msgCounter;
-    this.password = data.msgCounter;
+    this.topic = data.mqttTopic;
+    this.clientId = data.mqttClientId;
+    this.username = data.mqttUsername;
+    this.password = data.mqttPassword;
     console.log(data);
   }
 

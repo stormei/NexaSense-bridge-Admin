@@ -114,13 +114,63 @@ async getOpcData(): Promise<any> {
   }
 }
 
+/**************************************************************************
+ * Update NexaSense-Bridge MQTT Config
+ * 
+ * @param {string} mqttUrl - The MQTT URL
+ * @param {string} topic - The MQTT topic
+ * @param {string} clientId - The client ID
+ * @param {string} username - The MQTT username
+ * @param {string} password - The MQTT password
+ * @param {boolean} useTbPayload - Whether to use ThingsBoard payload format
+ * @return {Promise<any>} status as JSON object or 0 in case of an error
+ **************************************************************************/
+async updateMqttConfig(
+  mqttUrl: string,
+  topic: string,
+  clientId: string,
+  username: string,
+  password: string,
+  useTbPayload: boolean = true
+): Promise<any> {
+  try {
+    const body = JSON.stringify({
+      mqttUrl,
+      topic,
+      clientId,
+      username,
+      password,
+      useTbPayload,
+    });
+
+    const response = await fetch(`${this.baseURL}/api/updateMQTTConfig`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'x-authorization': `Bearer ${this.token}`,
+      },
+      method: 'POST',
+      mode: 'cors',
+      body: body,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error in updateMqttConfig:', error);
+    return 0;
+  }
+}
+
   logout() {
     this.authenticated = false;
     this.sessionId = null;
     this.token = '';
     this.username = '';
     this.password = '';
-
   }
 
 }
