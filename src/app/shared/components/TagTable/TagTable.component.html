@@ -1,4 +1,16 @@
 <div id="tagtable-container">
+  <!-- Search input field -->
+  <clr-input-container>
+    <label>Search</label>
+  <input clrInput
+    type="text"
+    placeholder="Search by TagName..."
+    [(ngModel)]="filterString"
+    (input)="filterTags()"
+    class="form-control mb-3"
+  />
+  </clr-input-container>
+
   <table id="tagtable" class="table table-striped">
     <thead>
       <tr>
@@ -10,7 +22,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tag of tags">
+      <!-- Loop through filteredTags instead of tags -->
+      <tr *ngFor="let tag of filteredTags">
         <td>{{ getTagName(tag) }}</td>
         <td>{{ getTagValue(tag) }}</td>
         <td>{{ getTagDataType(tag) }}</td>
@@ -20,4 +33,3 @@
     </tbody>
   </table>
 </div>
-
