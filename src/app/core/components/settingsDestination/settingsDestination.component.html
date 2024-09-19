@@ -1,5 +1,13 @@
-<h4 class="card-title"><strong>Destination MQTT Broker settings</strong> </h4>
+  <!-- Alert Box -->
+  <clr-alert [clrAlertClosable]="false" [clrAlertType]="'success'" *ngIf="isAlertVisible">
+    <clr-alert-item>
+      <span class="alert-text">Settings saved successfully!</span>
+    </clr-alert-item>
+  </clr-alert>
+<h4 class="card-title"><strong>Destination MQTT Broker settings</strong></h4>
 <form clrForm>
+
+  <!-- Existing form fields -->
   <clr-input-container>
     <label>MQTT Broker URL</label>
     <input clrInput type="text" [(ngModel)]="mqttUrl" name="Broker URL" />
@@ -8,7 +16,6 @@
     <label>MQTT Topic</label>
     <input clrInput type="text" [(ngModel)]="topic" name="MQTT topic" />
   </clr-input-container>
-
   <clr-input-container>
     <label>MQTT Client ID</label>
     <input clrInput type="text" [(ngModel)]="clientId" name="MQTT Client ID" />
@@ -27,6 +34,17 @@
       <label>Use Thingsboard payload format</label>
     </clr-toggle-wrapper>
   </clr-toggle-container>
-  <button class="btn btn-primary" type="submit" (click)="submit()">Submit</button>
+  <button class="btn btn-primary" type="button" (click)="submit()">Submit</button>
 </form>
 
+<!-- Modal -->
+<clr-modal [(clrModalOpen)]="isModalOpen">
+  <h3 class="modal-title">Confirm Submission</h3>
+  <div class="modal-body">
+    <p>Are you sure you want to submit the MQTT settings?</p>
+  </div>
+  <div class="modal-footer">
+    <button clrModalAction type="button" class="btn btn-outline" (click)="cancelSubmit()">Cancel</button>
+    <button clrModalAction type="button" class="btn btn-primary" (click)="confirmSubmit()">Save</button>
+  </div>
+</clr-modal>

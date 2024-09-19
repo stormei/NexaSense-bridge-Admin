@@ -12,7 +12,7 @@ export class StatusOpcuaComponent implements OnInit, OnDestroy {
   opcUaUrl: string = '';
   tags: string[] = [];
   tagsArray: any[] = [];  // Explicitly typing the array as 'any[]' or the appropriate type if known
-  private intervalId?: number;  // Optional type for better TypeScript support
+  private intervalId?: number;  
 
   constructor(private app: ApplicationService, private router: Router) { }
 
@@ -32,11 +32,10 @@ export class StatusOpcuaComponent implements OnInit, OnDestroy {
 
   async getData() {
     try {
-      const data = await this.app.getStatus();
+     // const data = await this.app.getStatus();
+      const data = await this.app.getOpcStatus();
       this.tagsArray = await this.app.getOpcData();
 
-      console.log(this.tagsArray);
-      console.log(data);
       this.connectorEnabled = data.enableOPCUA;
       this.opcUaUrl = data.opcUaUrl || '';  // Safe access in case data.opcUaUrl is undefined
       this.tags = data.tags || [];  // Safe access in case data.tags is undefined

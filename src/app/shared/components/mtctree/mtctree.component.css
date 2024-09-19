@@ -1,0 +1,49 @@
+ul, li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.treeView li {
+  margin-left: 1em;
+}
+
+.expand {
+  cursor: pointer;
+}
+
+.red {
+  color: rgb(255, 0, 68);
+}
+
+.black {
+  color: rgb(0, 0, 0);
+}
+
+.blue {
+  color: rgb(51, 0, 255);
+}
+
+.changed {
+  color: rgb(0, 187, 31);
+}
+
+@keyframes fadeColor {
+  0% {
+    color: #001303; /* Bright red */
+    background: #00cc1f;
+  }
+  100% {
+    color: #00cc1f; /* Darker red */
+    background: #ffffff00;
+  }
+}
+
+.fade-text {
+  animation: fadeColor 0.5s forwards;
+  transition: color 0.5s;
+}
+
+.floatRight {
+  float: right;
+}

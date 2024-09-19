@@ -2,19 +2,32 @@
   <tr>
     <td>Connected</td>
     <td>{{mqttState}}</td>
-</tr>
+  </tr>
   <tr>
       <td>MQTT Broker</td>
       <td>{{mqttBrokerUrl}}</td>
   </tr>
   <tr>
-      <td>Paused</td>
-      <td>{{mqttPublishPaused}}</td>
+      <td>State</td>
+      <td>{{state}}</td>
   </tr>
   <tr>
       <td>Published messages</td>
       <td>{{msgCounter}}</td>
   </tr>
+  <tr>
+    <td>Buffered messages</td>
+    <td>{{bufferSize}}</td>
+  </tr>
+  
+  <tr>
+    <td>Buffer Usage</td>
+    <td>
+        <clr-progress-bar clrValue="{{ getBufferUsagePercentage() }}" clrMax="100"></clr-progress-bar>
+        <span>{{ getBufferUsagePercentage() | number: '1.0-0' }}%</span>
+    </td>
+</tr>
+
  
 </table>
 

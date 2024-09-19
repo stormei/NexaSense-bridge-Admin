@@ -14,8 +14,12 @@ import { StatusSystemComponent } from './core/components/statusSystem/statusSyst
 import { StatusOpcuaComponent } from './core/components/statusOpcua/statusOpcua.component';
 import { StatusMtconnectComponent } from './core/components/statusMtconnect/statusMtconnect.component';
 import { SettingsDestinationComponent } from './core/components/settingsDestination/settingsDestination.component';
+import { SettingsOpcComponent } from './core/components/settingsOpc/settingsOpc.component';
+import { StatusHueComponent } from './core/components/statusHue/statusHue.component';
 import { TagTableComponent } from './shared/components/TagTable/TagTable.component';
 import { GraphComponent } from './shared/components/graph/graph.component';
+import { MtctreeComponent } from './shared/components/mtctree/mtctree.component';
+import { OpctreeComponent } from './shared/components/opctree/opctree.component';
 import '@cds/core/icon/register.js';
 import { ClarityIcons,shieldCheckIcon, userIcon,cloudTrafficIcon,tagIcon,collapseCardIcon,treeViewIcon,gridViewIcon,cogIcon,pencilIcon,resizeIcon,shrinkIcon,scriptExecuteIcon} from '@cds/core/icon';
 ClarityIcons.addIcons(shieldCheckIcon,userIcon,cloudTrafficIcon,tagIcon,collapseCardIcon,treeViewIcon,gridViewIcon,cogIcon,pencilIcon,resizeIcon,shrinkIcon,scriptExecuteIcon);
@@ -32,7 +36,11 @@ ClarityIcons.addIcons(shieldCheckIcon,userIcon,cloudTrafficIcon,tagIcon,collapse
     MenuComponent,
     TagTableComponent,
     GraphComponent,
-    SettingsDestinationComponent
+    MtctreeComponent,
+    OpctreeComponent,
+    SettingsDestinationComponent,
+    SettingsOpcComponent,
+    StatusHueComponent
   ],
   imports: [
     BrowserModule,

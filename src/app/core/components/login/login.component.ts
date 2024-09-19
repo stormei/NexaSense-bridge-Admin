@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
     this.erroMessage = '';
     this.failed = false;
     this.logout();
-    
   }
 
   async authenticate(username: string, password: string) {
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
      else {
       this.router.navigate(['/home', {}]);
      }
-     
   }
 
   failedLogin():boolean {

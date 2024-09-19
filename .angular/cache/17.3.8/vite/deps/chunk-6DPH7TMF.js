@@ -8,7 +8,7 @@ import {
   isPlatformServer,
   parseCookieValue,
   setRootDomAdapter
-} from "./chunk-HTCBAZTG.js";
+} from "./chunk-KH3E2GWA.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   APP_ID,
@@ -25,7 +25,6 @@ import {
   InjectionToken,
   NgModule,
   NgZone,
-  Observable,
   Optional,
   PLATFORM_ID,
   PLATFORM_INITIALIZER,
@@ -52,26 +51,18 @@ import {
   bypassSanitizationTrustScript,
   bypassSanitizationTrustStyle,
   bypassSanitizationTrustUrl,
-  concatMap,
   createPlatformFactory,
-  filter,
-  finalize,
   formatRuntimeError,
   forwardRef,
-  from,
   inject,
   internalCreateApplication,
   makeEnvironmentProviders,
   makeStateKey,
-  map,
-  of,
   performanceMarkFeature,
   platformCore,
   runInInjectionContext,
   setClassMetadata,
   setDocument,
-  switchMap,
-  tap,
   truncateMiddle,
   unwrapSafeValue,
   whenStable,
@@ -80,7 +71,18 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-HB5YBJEI.js";
+} from "./chunk-MW7KAMEX.js";
+import {
+  Observable,
+  concatMap,
+  filter,
+  finalize,
+  from,
+  map,
+  of,
+  switchMap,
+  tap
+} from "./chunk-S5JU3MLM.js";
 import {
   __async,
   __objRest,
@@ -4074,4 +4076,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-YSIPOXVK.js.map
+//# sourceMappingURL=chunk-6DPH7TMF.js.map

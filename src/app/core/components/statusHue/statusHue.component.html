@@ -1,0 +1,31 @@
+<clr-datagrid *ngIf="lights"> <!-- Only render the table if lights data is available -->
+  <clr-dg-column>Product</clr-dg-column>
+  <clr-dg-column>Name</clr-dg-column>
+  <clr-dg-column>Status</clr-dg-column>
+  <clr-dg-column>Brightnes</clr-dg-column>
+  <clr-dg-column>Color mode</clr-dg-column>
+  <clr-dg-column>Color </clr-dg-column>
+
+  <clr-dg-row *ngFor="let light of lights | keyvalue" [ngClass]="{'disabled-row': !light.value.state.reachable}">
+    <clr-dg-cell>{{ light.value.productname }}</clr-dg-cell>
+    <clr-dg-cell>{{ light.value.name }}</clr-dg-cell>
+    <clr-dg-cell>
+      <i 
+      [ngClass]="light.value.state.on ? 'fa-solid fa-lightbulb fa-xl' : 'fa-regular fa-lightbulb fa-xl'" 
+      [ngStyle]="{'color': light.value.state.on ? 'orange' : 'black'}">
+    </i>
+    </clr-dg-cell>
+    <clr-dg-cell>{{ (100 / 255 * light.value.state.bri) | number:'1.0-0' }} %</clr-dg-cell>
+
+    <clr-dg-cell>{{ light.value.state.colormode }}</clr-dg-cell>
+    <clr-dg-cell>
+      <span *ngIf="ctToRgb(light.value.state.ct)" 
+            [style.background-color]="ctToRgb(light.value.state.ct)">
+        {{ ctToRgb(light.value.state.ct) }}
+      </span>
+      <span *ngIf="!ctToRgb(light.value.state.ct)"></span> <!-- Empty cell when there's no color -->
+    </clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+
+<div *ngIf="!lights">Loading lights...</div>

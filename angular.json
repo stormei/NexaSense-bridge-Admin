@@ -43,7 +43,10 @@
               "node_modules/@clr/ui/clr-ui.min.css"
              
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/treeview.js"
+            
+            ]
           },
           "configurations": {
             "production": {
@@ -107,7 +110,9 @@
               "node_modules/@clr/ui/clr-ui.min.css"
               
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/treeview.js"
+            ]
           }
         }
       }

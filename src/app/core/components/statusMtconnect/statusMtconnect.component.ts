@@ -10,6 +10,10 @@ export class StatusMtconnectComponent implements OnInit {
   private intervalId: any;  // To store the interval ID
   connectorEnabled: boolean = true;
   mtcBrokerUrl: string = '';
+  treeData: any[] = []; 
+  activeLeafs: any[] = [];
+  lasSequence: number = 0;
+  lastKey: string = '';
   constructor(private app: ApplicationService, private router: Router) { }
 
   ngOnInit() {
@@ -26,6 +30,14 @@ export class StatusMtconnectComponent implements OnInit {
 
   async getData() {
     const data = await this.app.getStatus();
+
+    //only update if sequence is changed
+    if(data.mtcCurrentSecuence !== this.lasSequence) {
+      this.treeData = data.mtcData;
+      this.activeLeafs = data.mtcLastkeys;
+    }
+    
+    this.lasSequence = data.mtcCurrentSecuence;
     this.mtcBrokerUrl = data.mtcBrokerUrl;
     this.connectorEnabled = data.enableMTCONNECT;
     console.log(data);

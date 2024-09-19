@@ -1,35 +1,35 @@
 <div id="tagtable-container">
-  <!-- Search input field -->
   <clr-input-container>
     <label>Search</label>
-  <input clrInput
-    type="text"
-    placeholder="Search by TagName..."
-    [(ngModel)]="filterString"
-    (input)="filterTags()"
-    class="form-control mb-3"
-  />
+    <input clrInput
+      type="text"
+      placeholder="Search by TagName..."
+      [(ngModel)]="filterString"
+      (input)="filterTags()"
+      class="form-control mb-3"
+    />
   </clr-input-container>
 
-  <table id="tagtable" class="table table-striped">
-    <thead>
-      <tr>
-        <th>TagName</th>
-        <th>Value</th>
-        <th>DataType</th>
-        <th>Status</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Loop through filteredTags instead of tags -->
-      <tr *ngFor="let tag of filteredTags">
-        <td>{{ getTagName(tag) }}</td>
-        <td>{{ getTagValue(tag) }}</td>
-        <td>{{ getTagDataType(tag) }}</td>
-        <td>{{ getStatusCodeDescription(getTagStatus(tag)) }}</td>
-        <td><i [class]="getStatusCodeIconClass(getTagStatus(tag))"></i></td>
-      </tr>
-    </tbody>
-  </table>
+  <clr-datagrid id="tagtable">
+    <clr-dg-column *ngIf="!isDetailedLayout()">
+      <input type="checkbox" clrCheckbox (click)="toggleAllSelection()" [checked]="allSelected" />
+    </clr-dg-column>
+    <clr-dg-column>Tag name</clr-dg-column>
+    <clr-dg-column *ngIf="isDetailedLayout()">Value</clr-dg-column>
+    <clr-dg-column>Data type</clr-dg-column>
+    <clr-dg-column *ngIf="isDetailedLayout()">Status</clr-dg-column>
+    <clr-dg-column *ngIf="isDetailedLayout()"> </clr-dg-column>
+
+    <clr-dg-row *ngFor="let tag of filteredTags">
+      <clr-dg-cell *ngIf="!isDetailedLayout()">
+        <input type="checkbox" clrCheckbox [(ngModel)]="selectedTags[getTagName(tag)]" />
+      </clr-dg-cell>
+      <clr-dg-cell>{{ getTagName(tag)}}</clr-dg-cell>
+      <clr-dg-cell *ngIf="isDetailedLayout()" [ngClass]="{'blink-green': isTagChanged(tag)}">{{ getTagValue(tag) }}</clr-dg-cell>
+      <clr-dg-cell>{{ getTagDataType(tag) }}</clr-dg-cell>
+      <clr-dg-cell *ngIf="isDetailedLayout()">{{ getStatusCodeDescription(getTagStatus(tag)) }}</clr-dg-cell>
+      <clr-dg-cell *ngIf="isDetailedLayout()"><i [class]="getStatusCodeIconClass(getTagStatus(tag))"></i></clr-dg-cell>
+    </clr-dg-row>
+  </clr-datagrid>
 </div>
+

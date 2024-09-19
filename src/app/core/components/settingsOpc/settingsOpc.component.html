@@ -1,0 +1,109 @@
+  <!-- Alert Box -->
+  <clr-alert [clrAlertClosable]="true" [clrAlertType]="alertType" *ngIf="isAlertVisible">
+    <clr-alert-item>
+      <span class="alert-text">{{alertText}}</span>
+    </clr-alert-item>
+  </clr-alert>
+
+  <clr-tabs>
+    <clr-tab>
+      <button clrTabLink>Status</button>
+      <clr-tab-content *clrIfActive>
+        <h4 class="card-title"><strong>OPC UA Client settings</strong></h4>
+        <form clrForm>
+        
+          <!-- Existing form fields -->
+          <clr-toggle-container>
+            <clr-toggle-wrapper>
+              <input type="checkbox" clrToggle value="option1" name="options" [(ngModel)]="enableOpcConnector" />
+              <label>Enable OPC UA connector</label>
+            </clr-toggle-wrapper>
+          </clr-toggle-container>
+          <clr-input-container>
+            <label>OPC UA  Server URL</label>
+            <input clrInput type="text" [(ngModel)]="opcUrl" name="Broker URL" />
+          </clr-input-container>
+         
+          <clr-input-container>
+            <label>OPC UA username</label>
+            <input clrInput type="text" [(ngModel)]="username" name="MQTT username" />
+          </clr-input-container>
+          <clr-input-container>
+            <label>OPC UA Client password</label>
+            <input clrInput type="password" [(ngModel)]="password" name="MQTT Client password" />
+          </clr-input-container>
+          
+          <button class="btn btn-primary" type="button" (click)="submit()">Submit</button>
+        </form>
+  
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink>Tags</button>
+      <clr-tab-content *clrIfActive>
+        <div class="clr-row">
+          <div class="clr-col-6">
+            <button class="btn btn-primary btn-sm" (click)="browseOpcUaServer()">Browse</button>
+            <app-opctree [data]="tree"></app-opctree>
+            <clr-spinner *ngIf="fetchingOpcTags">Loading data</clr-spinner>
+           
+          </div>
+          <div class="clr-col-6">
+            <clr-button-group class="btn-primary">
+              <clr-button class="btn btn-primary btn-sm" (click)="showAddTagModal()">Add</clr-button>
+              <clr-button class="btn btn-primary btn-sm" (click)="pushTags()">Push</clr-button>
+              <clr-button class="btn btn-primary btn-sm">Import</clr-button>
+              <clr-button class="btn btn-primary btn-sm">Export</clr-button>
+              <clr-button class="btn btn-danger btn-sm" (click)="showDeleteConfirmation()">Delete</clr-button>
+            </clr-button-group>
+            <app-TagTable [tags]="tagsArray" [detailedLayout]="false"></app-TagTable>
+          </div>
+         
+        </div>
+        
+      </clr-tab-content>
+    </clr-tab>
+    
+  </clr-tabs>
+
+
+<!-- Modal -->
+<clr-modal [(clrModalOpen)]="isModalOpen">
+  <h3 class="modal-title">Confirm Submission</h3>
+  <div class="modal-body">
+    <p>Are you sure you want to submit the OPC settings?</p>
+  </div>
+  <div class="modal-footer">
+    <button clrModalAction type="button" class="btn btn-outline" (click)="cancelSubmit()">Cancel</button>
+    <button clrModalAction type="button" class="btn btn-primary" (click)="confirmSubmit()">Save</button>
+  </div>
+</clr-modal>
+
+<!-- Modal for delete confirmation -->
+<clr-modal [(clrModalOpen)]="isDeleteModalOpen">
+  <h3 class="modal-title">Confirm Delete</h3>
+  <div class="modal-body">
+    <p>Are you sure you want to delete the selected tags?</p>
+  </div>
+  <div class="modal-footer">
+    <button clrModalAction type="button" class="btn btn-outline" (click)="cancelDelete()">Cancel</button>
+    <button clrModalAction type="button" class="btn btn-danger" (click)="confirmDelete()">Delete</button>
+  </div>
+</clr-modal>
+
+<!-- Modal for adding a new tag -->
+<clr-modal [(clrModalOpen)]="isAddTagModalOpen">
+  <h3 class="modal-title">Add New Tag</h3>
+  <div class="modal-body">
+    <clr-input-container>
+      <label for="newTagInput">Tag</label>
+      <input clrInput id="newTagInput" type="text" [(ngModel)]="newTag" placeholder="Enter tag name" />
+    </clr-input-container>
+  </div>
+  <div class="modal-footer">
+    <button clrModalAction type="button" class="btn btn-outline" (click)="cancelAddTag()">Cancel</button>
+    <button clrModalAction type="button" class="btn btn-primary" (click)="confirmAddTag()">Add</button>
+  </div>
+</clr-modal>
+
+

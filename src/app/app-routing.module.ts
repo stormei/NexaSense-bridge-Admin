@@ -8,6 +8,10 @@ import { StatusSystemComponent } from './core/components/statusSystem/statusSyst
 import { StatusOpcuaComponent } from './core/components/statusOpcua/statusOpcua.component';
 import { StatusMtconnectComponent } from './core/components/statusMtconnect/statusMtconnect.component';
 import { SettingsDestinationComponent } from './core/components/settingsDestination/settingsDestination.component';
+import { SettingsOpcComponent } from './core/components/settingsOpc/settingsOpc.component';
+import { StatusHueComponent } from './core/components/statusHue/statusHue.component';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -41,6 +45,14 @@ const routes: Routes = [
   {
     path: 'settings_dest',
     component: SettingsDestinationComponent
+  },
+  {
+    path: 'settings_opcua',
+    component: SettingsOpcComponent
+  },
+  {
+    path: 'status_hue',
+    component: StatusHueComponent
   },
   {
     path: '**',

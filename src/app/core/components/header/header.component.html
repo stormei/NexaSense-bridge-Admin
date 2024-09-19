@@ -21,13 +21,16 @@
   </div>  
 </clr-header>
 
+<!-- Modal for logout confirmation -->
 <clr-modal [(clrModalOpen)]="modalOpen">
-  <h3 class="modal-title">Logout</h3>
+  <h3 class="modal-title" *ngIf="!tokenExpired">Logout</h3>
+  <h3 class="modal-title" *ngIf="tokenExpired">Session Expired</h3>
   <div class="modal-body">
-    <p>Are you sure ?</p>
+    <p *ngIf="!tokenExpired">Are you sure you want to logout?</p>
+    <p *ngIf="tokenExpired">Your session has expired. Please log in again.</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="modalOpen = false">Cancel</button>
+    <button type="button" class="btn btn-outline" (click)="modalOpen = false" *ngIf="!tokenExpired">Cancel</button>
     <button type="button" class="btn btn-primary" (click)="logout()">Ok</button>
   </div>
 </clr-modal>

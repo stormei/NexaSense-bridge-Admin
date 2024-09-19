@@ -13,4 +13,14 @@
   .text-secondary {
     color: #6c757d !important;
   }
+  .blink-green {
+    animation: blink-animation 0.5s ease-in-out 3; /* Faster fading with more blinks */
+  }
+  
+  @keyframes blink-animation {
+    0% { background-color: transparent; }
+    10% { background-color: lightgreen; }
+    100% { background-color: transparent; }
+  }
+  
   

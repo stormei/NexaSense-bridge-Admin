@@ -13,7 +13,13 @@ export class StatusDestinationComponent implements OnInit, OnDestroy {
   mqttPublishPaused: string = 'false';
   mqttState: string = '';
   msgCounter: number = 0;
-  private intervalId: any;  // To store the interval ID
+  previousMsgCounter: number = 0; // Track the previous msgCounter
+  bufferSize: number = 0;
+  maxBufferSize: number = 1000000;
+  state = 'idle';
+  publishRate: number = 0; // Messages per second
+  bufferTimeRemaining: number = 0; // Seconds the buffer will last
+  private intervalId: any;
 
   constructor(private app: ApplicationService, private router: Router) { }
 
@@ -30,12 +36,45 @@ export class StatusDestinationComponent implements OnInit, OnDestroy {
   }
 
   async getData() {
-    const data = await this.app.getStatus();
+    const data = await this.app.getMqttStatus();
+
+    // Calculate the publishing rate (messages per second)
+    const currentMsgCounter = data.msgCounter;
+    const messagesPublishedSinceLastCheck = currentMsgCounter - this.previousMsgCounter;
+
+    // Since getData() is called every second, the rate is simply the difference
+    this.publishRate = messagesPublishedSinceLastCheck;
+    this.previousMsgCounter = currentMsgCounter;
+
+    // Update the MQTT state data
     this.mqttBrokerUrl = data.mqttBrokerUrl;
     this.mqttPublishPaused = data.mqttPublishPaused;
     this.mqttState = data.mqttState;
-    this.msgCounter = data.msgCounter;
-    console.log(data);
+    this.msgCounter = currentMsgCounter;
+    this.bufferSize = data.bufferSize;
+    this.state = data.state;
+
+    // Calculate buffer time remaining
+    this.calculateBufferTimeRemaining();
+  }
+
+  // Method to calculate the percentage of buffer used
+  getBufferUsagePercentage(): number {
+    return (this.bufferSize / this.maxBufferSize) * 100;
+  }
+
+  // Method to calculate how long the buffer will last
+  calculateBufferTimeRemaining(): void {
+    if (this.publishRate > 0) {
+      // Calculate the number of remaining bytes in the buffer
+      const remainingBufferSize = this.maxBufferSize - this.bufferSize;
+
+      // Estimate time remaining in seconds (remaining buffer size / messages per second)
+      this.bufferTimeRemaining = remainingBufferSize / this.publishRate;
+    } else {
+      // If no messages are being published, set bufferTimeRemaining to Infinity
+      this.bufferTimeRemaining = Infinity;
+    }
   }
 
   ngOnDestroy() {
@@ -45,4 +84,3 @@ export class StatusDestinationComponent implements OnInit, OnDestroy {
     }
   }
 }
-
