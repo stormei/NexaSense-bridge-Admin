@@ -19,6 +19,8 @@ export class SettingsOpcComponent implements OnInit {
   isAlertVisible: boolean = false; // Flag to control alert visibility
   isDeleteModalOpen: boolean = false; // Flag to control delete modal visibility
   isAddTagModalOpen: boolean = false; // Flag to control add tag modal visibility
+  isReplaceTagsModalOpen: boolean = false; // Flag to control replace tag modal visibility
+  deviceAttribute: any;
   tags: string[] = [];
   tagsArray: any[] = []; 
   tree: any[] = [];
@@ -75,7 +77,6 @@ export class SettingsOpcComponent implements OnInit {
     try {
       const data = await this.app.getOpcStatus();
       this.tagsArray = await this.app.getOpcData();
-
       console.log(this.tagsArray);
       console.log(data);
       this.tags = data.tags || [];
@@ -94,6 +95,18 @@ export class SettingsOpcComponent implements OnInit {
         success ? 'Tags saved to TB successfully' : 'Error!!! Something went wrong (see log for details)'
       );
   
+    } catch (error) {
+      console.error('Error pushing data', error);
+    }
+  }
+
+  async pullTags() {
+    try {
+      this.deviceAttribute = await this.app.pullDeviceAttributes();
+      //alert(JSON.stringify(tags));
+      console.log(this.config.tags);
+      console.log(this.deviceAttribute.client.$tags);
+      this.isReplaceTagsModalOpen = true;
     } catch (error) {
       console.error('Error pushing data', error);
     }
@@ -136,6 +149,21 @@ export class SettingsOpcComponent implements OnInit {
   cancelDelete() {
     this.isDeleteModalOpen = false;
   }
+
+  async confirmReplaceTag() {
+    try {
+      this.config.tags = this.deviceAttribute.client.$tags;
+      console.log(this.config.tags);
+      const res = await this.app.postTagsToServer(this.config.tags);
+      this.getTags();
+      console.log('tags added...hihaaa!!!');
+    }
+    catch(e) {
+      console.log(e);
+    }
+    this.isReplaceTagsModalOpen = false;
+  }
+
 
   // New methods for add tag functionality
   showAddTagModal() {

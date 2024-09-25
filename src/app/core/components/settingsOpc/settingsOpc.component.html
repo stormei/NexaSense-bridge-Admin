@@ -51,7 +51,8 @@
           <div class="clr-col-6">
             <clr-button-group class="btn-primary">
               <clr-button class="btn btn-primary btn-sm" (click)="showAddTagModal()">Add</clr-button>
-              <clr-button class="btn btn-primary btn-sm" (click)="pushTags()">Push</clr-button>
+              <clr-button class="btn btn-primary btn-sm" (click)="pushTags()">Push to TB</clr-button>
+              <clr-button class="btn btn-primary btn-sm" (click)="pullTags()">Pull from TB</clr-button>
               <clr-button class="btn btn-primary btn-sm">Import</clr-button>
               <clr-button class="btn btn-primary btn-sm">Export</clr-button>
               <clr-button class="btn btn-danger btn-sm" (click)="showDeleteConfirmation()">Delete</clr-button>
@@ -105,5 +106,18 @@
     <button clrModalAction type="button" class="btn btn-primary" (click)="confirmAddTag()">Add</button>
   </div>
 </clr-modal>
+
+<!-- Modal for adding a new tag -->
+<clr-modal [(clrModalOpen)]="isReplaceTagsModalOpen">
+  <h3 class="modal-title">Replace tag configuration ?</h3>
+  <div class="modal-body">
+    This can't be undone!
+  </div>
+  <div class="modal-footer">
+    <button clrModalAction type="button" class="btn btn-outline" (click)="isReplaceTagsModalOpen  = false">Cancel</button>
+    <button clrModalAction type="button" class="btn btn-primary" (click)="confirmReplaceTag()">Replace</button>
+  </div>
+</clr-modal>
+
 
 

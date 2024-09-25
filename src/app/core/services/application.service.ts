@@ -375,6 +375,33 @@ async publishSharedAttributes(payload: Record<string, any>): Promise<boolean> {
 }
 
 
+/*****************************************************************
+ * get tags from TB
+ * 
+ * @return {Promise<any>} status as JSON object or 0 in case of an error
+ ******************************************************************/
+async pullDeviceAttributes(): Promise<any> {
+  try {
+    const response = await fetch(`${this.baseURL}/api/mqtt/device_attributes`, {
+      headers: {
+        'Accept': 'application/json',
+        'x-authorization': `Bearer ${this.token}`,
+      },
+      method: 'GET',
+      mode: 'cors',
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error in getMqttConfig:', error);
+    return 0;
+  }
+}
+
 
 /**************************************************************************
  * Update NexaSense-Bridge OPC UA Config
